@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://jawcje0ioobr"]
+
+[ext_resource type="Script" path="res://scenes/characters/icarus.gd" id="1_2qt7u"]
+[ext_resource type="Texture2D" uid="uid://b56ybdyybw5lj" path="res://icon.svg" id="1_hg6ae"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dtwha"]
+size = Vector2(60, 60)
+
+[node name="Icarus" type="RigidBody2D"]
+script = ExtResource("1_2qt7u")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_hg6ae")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dtwha")

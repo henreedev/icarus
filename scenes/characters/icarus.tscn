@@ -1,17 +1,25 @@
 [gd_scene load_steps=4 format=3 uid="uid://jawcje0ioobr"]
 
 [ext_resource type="Script" path="res://scenes/characters/icarus.gd" id="1_2qt7u"]
-[ext_resource type="Texture2D" uid="uid://b56ybdyybw5lj" path="res://icon.svg" id="1_hg6ae"]
+[ext_resource type="Texture2D" uid="uid://dnion6s2divim" path="res://assets/characters/Icarus_v1.png" id="2_7omyr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtwha"]
-size = Vector2(60, 60)
+size = Vector2(8, 12)
 
 [node name="Icarus" type="RigidBody2D"]
+gravity_scale = 0.1
 script = ExtResource("1_2qt7u")
 
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_hg6ae")
+texture = ExtResource("2_7omyr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dtwha")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(119, 0)
+zoom = Vector2(3, 3)
+limit_smoothed = true
+
+[node name="FlapTimer" type="Timer" parent="."]

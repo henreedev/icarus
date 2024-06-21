@@ -106,6 +106,7 @@ func _begin_flapping():
 
 func _begin_gliding():
 	state = State.GLIDING
+	asprite.animation = "glide_up"
 	_pick_animation()
 	_reset_flap_vars()
 	linear_damp = 0.0
@@ -150,10 +151,9 @@ func _pick_animation():
 			else:
 				asprite.animation = "float"
 		State.GLIDING:
-			if rotation_degrees > 10.0: asprite.animation = "glide_down"
-			elif rotation_degrees < -10.0: asprite.animation = "glide_up"
-			elif asprite.animation != "glide_down" and asprite.animation != "glide_up":
-				asprite.animation = "glide_up"
+			if asprite.animation != "tumble":
+				if rotation_degrees > 10.0: asprite.animation = "glide_down"
+				elif rotation_degrees < -10.0: asprite.animation = "glide_up"
 		State.FALLING:
 			asprite.animation = "fall"
 	asprite.play()

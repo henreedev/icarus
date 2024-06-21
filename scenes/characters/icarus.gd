@@ -184,9 +184,12 @@ func _rotate_on_input(delta : float) -> void:
 			apply_torque(rotation_adj)
 			rotation_degrees = clampf(rotation_degrees, -ROTATION_LIMIT, ROTATION_LIMIT)
 
-func _tumble() -> void:
+func _tumble(backwards := false) -> void:
 	asprite.animation = "tumble"
-	asprite.play()
+	if backwards:
+		asprite.play_backwards()
+	else:
+		asprite.play()
 
 func _flap() -> void:
 	flap_type = _pick_flap_type()
@@ -275,7 +278,7 @@ func _on_as_animation_finished() -> void:
 			_reset_flap_vars()
 			_pick_animation()
 		"flap_strong":
-			_tumble()
+			_tumble(true)
 		"tumble":
 			if state == State.FLAPPING:
 				_begin_gliding()

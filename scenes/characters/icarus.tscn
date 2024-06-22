@@ -303,6 +303,7 @@ frame_progress = 1.0
 shape = SubResource("RectangleShape2D_dtwha")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 2
 offset = Vector2(119, 0)
 zoom = Vector2(3, 3)
 limit_smoothed = true

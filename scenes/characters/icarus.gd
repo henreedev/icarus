@@ -34,6 +34,7 @@ var flap_charge_time := 0.0
 
 # Movement variables
 var hoz_speed = MIN_HOZ_SPEED
+var base_gravity_scale = gravity_scale
 
 # Other variables
 
@@ -93,8 +94,14 @@ func _physics_process_state(delta) -> void:
 						print("ERROR Flap.NONE encountered")
 		State.GLIDING:
 			_rotate_on_input(delta)
+			#print(speed)
+			var ratio = clampf(speed / 200.0 + 0.1, 0, 1) # amount of current speed to redirect towards rotation direction
+			var grav_ratio = clampf(speed / 200.0 + (0.5 if rotation > 0 else -0.5), 0, 2) # amount of current speed to redirect towards rotation direction
+			gravity_scale = grav_ratio * base_gravity_scale
+			ratio = ratio * 10.0 * delta 
+			print(gravity_scale)
 			var rotation_vector = Vector2.from_angle(rotation)
-			linear_velocity = linear_velocity.length() * rotation_vector
+			linear_velocity = ratio * (linear_velocity.length() * rotation_vector) + (1 - ratio) * linear_velocity
 			_pick_animation()
 		State.FALLING:
 			pass # TODO add height check for losing the game
@@ -103,6 +110,7 @@ func _physics_process_state(delta) -> void:
 func _begin_flapping():
 	state = State.FLAPPING
 	_pick_animation()
+	gravity_scale = base_gravity_scale
 
 func _begin_gliding():
 	state = State.GLIDING
@@ -284,4 +292,3 @@ func _on_as_animation_finished() -> void:
 				_begin_gliding()
 			else:
 				_begin_flapping()
-

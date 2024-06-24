@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpq8hnfypggt6"
-path="res://.godot/imported/Background_ClearSky_V1.png-af5f46f0f62ead4f88bc98bef5af360d.ctex"
+uid="uid://dfpgi70h7aioj"
+path="res://.godot/imported/StartTower_V1_2.png-4f307324b74f0ecfb108ce5944cb5370.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/environment/Background_ClearSky_V1.png"
-dest_files=["res://.godot/imported/Background_ClearSky_V1.png-af5f46f0f62ead4f88bc98bef5af360d.ctex"]
+source_file="res://assets/environment/StartTower_V1_2.png"
+dest_files=["res://.godot/imported/StartTower_V1_2.png-4f307324b74f0ecfb108ce5944cb5370.ctex"]
 
 [params]
 

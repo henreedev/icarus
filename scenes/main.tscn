@@ -1,22 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://xjed8g5wyrej"]
+[gd_scene load_steps=4 format=3 uid="uid://xjed8g5wyrej"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_snkho"]
 [ext_resource type="PackedScene" uid="uid://jawcje0ioobr" path="res://scenes/characters/icarus.tscn" id="2_2i00u"]
-[ext_resource type="Texture2D" uid="uid://cpq8hnfypggt6" path="res://assets/environment/Background_ClearSky_V1.png" id="2_2x4m0"]
-[ext_resource type="Texture2D" uid="uid://dnion6s2divim" path="res://assets/characters/Icarus_v1.png" id="3_gnvfi"]
+[ext_resource type="PackedScene" uid="uid://d0rwivubvjnhq" path="res://scenes/environment/background.tscn" id="2_ewb05"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_snkho")
 
-[node name="Parallax2D" type="Parallax2D" parent="."]
-repeat_size = Vector2(600, 600)
-repeat_times = 20
-
-[node name="Background" type="Sprite2D" parent="Parallax2D"]
-texture = ExtResource("2_2x4m0")
-
-[node name="IcarusV1" type="Sprite2D" parent="Parallax2D/Background"]
-position = Vector2(-1, -293)
-texture = ExtResource("3_gnvfi")
+[node name="Background" parent="." instance=ExtResource("2_ewb05")]
+position = Vector2(0, -165.935)
 
 [node name="Icarus" parent="." instance=ExtResource("2_2i00u")]
+position = Vector2(169, 107)
+gravity_scale = 0.0

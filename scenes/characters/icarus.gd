@@ -42,12 +42,13 @@ var base_gravity_scale = gravity_scale
 @onready var main : Main = get_tree().get_first_node_in_group("main")
 @onready var flap_timer : Timer = $FlapTimer
 @onready var asprite : AnimatedSprite2D = $AS
+@onready var camera : Camera2D = $Camera2D
 
 #endregion
 
 #region: Base functions
 func _ready() -> void:
-	pass 
+	create_tween().tween_property(camera, "zoom", Vector2(3, 3), 2.0).from(Vector2(1,1)) 
 
 func _process(delta: float) -> void:
 	_process_state(delta)
@@ -143,7 +144,6 @@ func apply_upward_force(magnitude):
 
 func apply_upward_impulse(magnitude):
 	apply_central_impulse(Vector2(0, -magnitude).rotated(rotation))
-
 
 func _pick_animation():
 	match state:

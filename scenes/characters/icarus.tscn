@@ -312,7 +312,12 @@ position_smoothing_speed = 10.0
 
 [node name="FlapTimer" type="Timer" parent="."]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../Node/WindLines")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="WindLines" type="GPUParticles2D" parent="Node"]
 process_material = SubResource("ParticleProcessMaterial_at8at")
 
 [connection signal="animation_finished" from="AS" to="." method="_on_as_animation_finished"]

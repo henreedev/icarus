@@ -1,7 +1,37 @@
-[gd_scene load_steps=34 format=3 uid="uid://jawcje0ioobr"]
+[gd_scene load_steps=38 format=3 uid="uid://jawcje0ioobr"]
 
 [ext_resource type="Script" path="res://scenes/characters/icarus.gd" id="1_2qt7u"]
 [ext_resource type="Texture2D" uid="uid://bqxylwqbovjjd" path="res://assets/characters/Icarus_v2_Spritesheet.png" id="2_1fket"]
+
+[sub_resource type="Gradient" id="Gradient_p4vr4"]
+offsets = PackedFloat32Array(0.303279, 0.565574, 0.786885)
+colors = PackedColorArray(0.980392, 1, 1, 1, 0.372549, 1, 1, 1, 0.372549, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wm782"]
+gradient = SubResource("Gradient_p4vr4")
+
+[sub_resource type="Curve" id="Curve_rhk74"]
+min_value = -1.0
+max_value = 4.0
+_data = [Vector2(0, 0.615385), 0.0, 0.0, 0, 0, Vector2(0.126667, 3.34066), 0.0, 0.0, 0, 0, Vector2(0.48, 4), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_gpapl"]
+curve = SubResource("Curve_rhk74")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_at8at"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 96, 1)
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 140.85
+initial_velocity_max = 140.85
+radial_velocity_min = -2.23517e-05
+radial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+tangential_accel_curve = SubResource("CurveTexture_gpapl")
+color_ramp = SubResource("GradientTexture1D_wm782")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jw8f2"]
 atlas = ExtResource("2_1fket")
@@ -278,19 +308,23 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtwha"]
 size = Vector2(8, 12)
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_at8at"]
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 9.63
-inherit_velocity_ratio = 1.0
-angular_velocity_min = -1.60933e-05
-angular_velocity_max = -1.60933e-05
-gravity = Vector3(0, 0, 0)
-
 [node name="Icarus" type="RigidBody2D"]
 linear_damp = 5.0
 angular_damp = 2.0
 script = ExtResource("1_2qt7u")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="WindLines" type="GPUParticles2D" parent="Node"]
+physics_interpolation_mode = 2
+position = Vector2(384, 0)
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_at8at")
+lifetime = 3.0
+fixed_fps = 60
+visibility_rect = Rect2(-500, -200, 400, 400)
+trail_enabled = true
+trail_lifetime = 0.5
 
 [node name="AS" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8vgoi")
@@ -313,11 +347,7 @@ position_smoothing_speed = 10.0
 [node name="FlapTimer" type="Timer" parent="."]
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+position = Vector2(384, 0)
 remote_path = NodePath("../Node/WindLines")
-
-[node name="Node" type="Node" parent="."]
-
-[node name="WindLines" type="GPUParticles2D" parent="Node"]
-process_material = SubResource("ParticleProcessMaterial_at8at")
 
 [connection signal="animation_finished" from="AS" to="." method="_on_as_animation_finished"]

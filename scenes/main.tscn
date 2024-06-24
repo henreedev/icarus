@@ -8,7 +8,7 @@
 script = ExtResource("1_snkho")
 
 [node name="Background" parent="." instance=ExtResource("2_ewb05")]
-position = Vector2(0, -165.935)
+position = Vector2(0, -300)
 
 [node name="Icarus" parent="." instance=ExtResource("2_2i00u")]
 position = Vector2(169, 107)

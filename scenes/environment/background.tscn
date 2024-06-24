@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0rwivubvjnhq"]
+[gd_scene load_steps=10 format=4 uid="uid://d0rwivubvjnhq"]
 
 [ext_resource type="Texture2D" uid="uid://4pqs0csvaoef" path="res://assets/environment/Background_ClearSky_V2_Sky.png" id="1_by28f"]
 [ext_resource type="Texture2D" uid="uid://d0lh3sysgi06a" path="res://assets/environment/Background_ClearSky_V2_Clouds1.png" id="2_8mlxg"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c25tmd5gl2p4a" path="res://assets/environment/Background_ClearSky_V2_Ocean2.png" id="6_uqdet"]
 [ext_resource type="Texture2D" uid="uid://b5ld7r51cppge" path="res://assets/environment/Background_ClearSky_V2_Ocean1.png" id="7_6crf1"]
 [ext_resource type="Texture2D" uid="uid://dfpgi70h7aioj" path="res://assets/environment/StartTower_V1_2.png" id="8_bl0xk"]
+[ext_resource type="PackedScene" uid="uid://dt5f85icwos8u" path="res://scenes/environment/wind_tiles.tscn" id="9_urgil"]
 
 [node name="Background" type="Node2D"]
 
@@ -73,8 +74,12 @@ texture = ExtResource("3_ydair")
 centered = false
 
 [node name="Parallax2D8" type="Parallax2D" parent="."]
+scroll_offset = Vector2(0, 200.59)
 repeat_times = 10
 
 [node name="Tower" type="Sprite2D" parent="Parallax2D8"]
 texture = ExtResource("8_bl0xk")
 centered = false
+
+[node name="TileMapLayer" parent="." instance=ExtResource("9_urgil")]
+tile_map_data = PackedByteArray("AAACABoAAAAAAAAAAAADABoAAAAAAAAAAAAEABoAAAAAAAAAAAAFABoAAAAAAAAAAAALAA8AAAAAAAAAAAAMAA8AAAAAAAAAAAANAA8AAAAAAAAAAAAOAA8AAAAAAAAAAAAPAA8AAAAAAAAAAAAQAA8AAAAAAAAAAAARAA8AAAAAAAAAAAASAA8AAAAAAAAAAAATAA8AAAAAAAAAAAAUAA8AAAAAAAAAAAAVAA8AAAAAAAAAAAAWAA8AAAAAAAAAAAASABIAAAAAAAAAAAATABIAAAAAAAAAAAAUABIAAAAAAAAAAAAVABIAAAAAAAAAAAAWABIAAAAAAAAAAAAXABIAAAAAAAAAAAAYABEAAAAAAAAAAAAZABEAAAAAAAAAAAAaABEAAAAAAAAAAAAaABIAAAAAAAAAAAAbABIAAAAAAAAAAAAcABIAAAAAAAAAAAAdABIAAAAAAAAAAAAeABIAAAAAAAAAAAAfABIAAAAAAAAAAAAgABIAAAAAAAAAAAAhABIAAAAAAAAAAAAiABIAAAAAAAAAAAAjABIAAAAAAAAAAAAhABAAAAAAAAAAAGAhAA0AAAAAAAAAAGAhAA4AAAAAAAAAAGAhAA8AAAAAAAAAAGApAAoAAAAAAAAAAFApAAsAAAAAAAAAAFApAAwAAAAAAAAAAFApAA0AAAAAAAAAAFApAA4AAAAAAAAAAFApAA8AAAAAAAAAAFApABAAAAAAAAAAAFApABEAAAAAAAAAAFAqAAoAAAAAAAAAAFAqAAsAAAAAAAAAAFAqAAwAAAAAAAAAAFAqAA0AAAAAAAAAAFAqAA4AAAAAAAAAAFAqAA8AAAAAAAAAAFAqABAAAAAAAAAAAFAqABEAAAAAAAAAAFA=")

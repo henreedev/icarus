@@ -4,6 +4,8 @@ class_name Main
 #region: globals
 
 @onready var icarus : Icarus = $Icarus
+@onready var above : Area2D = $Background/Above
+@onready var below : Area2D = $Background/Underneath
 var bird_scene = "res://scenes/environment/bird.tscn"
 var wave_scene = "res://scenes/environment/wave.tscn"
 var hurricane_scene = "res://scenes/environment/hurricane.tscn"
@@ -22,8 +24,8 @@ class populator:
 	var start = 0
 	var population = 0
 	var prefab = "res://scenes/environment/bird.tscn"
-	var min_height = 0
-	var max_height = 256
+	var min_height = 150
+	var max_height = 700
 	func _init(a,b,c, d, e):
 		start = a
 		population = b
@@ -34,9 +36,9 @@ class populator:
 
 #endregion
 
-var hurricane = populator.new(3, 2, hurricane_scene, 0, 256)
-var bird = populator.new(1,2, bird_scene, 100, 256)
-var wave = populator.new(2,2, wave_scene, 0, 100)
+var hurricane = populator.new(3, 2, hurricane_scene, 200, 700)
+var bird = populator.new(1,2, bird_scene, 150, 350)
+var wave = populator.new(2,2, wave_scene, 600, 700)
 	
 var all = [hurricane, bird, wave]
 
@@ -49,6 +51,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+#TODO: Dynamic load/unload of enemies
 func _process(delta: float) -> void:
 	##var pos = $Icarus.position
 	##var current = floor(pos.x/1000)

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://1ppi778ge1tg"]
+
+[ext_resource type="Script" path="res://scenes/environment/wave.gd" id="1_kktql"]
+[ext_resource type="Texture2D" uid="uid://h56uidikdt7p" path="res://assets/characters/wave.png" id="1_kt68y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ea34"]
+size = Vector2(60, 80)
+
+[node name="Wave" type="Node2D"]
+script = ExtResource("1_kktql")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4ea34")
+
+[node name="Wave" type="Sprite2D" parent="."]
+scale = Vector2(1.6, 2.4)
+texture = ExtResource("1_kt68y")
